@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block h1 %}Welcome to my Weblog {{session.get('user_name', 'Guest')}}{% endblock %}
+
+{% block main %}
+
+    {% for post in posts %}
+        <div class="post">
+            <h2>{{post.title}}</h2>
+
+            <div class="pic">
+                {% if post.get('image', None) %}
+                    <img src="{{ url_for('static', filename='uploads/image/' + post.image) }}" alt="">
+                {% else %}
+                    <img class="no-pic" src="{{ url_for('static', filename='image/images.jpg') }}" alt="No Picture Available">
+                {% endif %}
+            </div>
+
+            <p>{{post.content}}</p>
+            <p>23:45</p>
+            <a href="">commnets</a>
+        </div>
+    {% endfor %}
+    
+{% endblock %}
